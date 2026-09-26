@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// function for export must start with capital letter
 func Start() {
 	//registering the handler or defining the routes
 	http.HandleFunc("/greet", greet)
