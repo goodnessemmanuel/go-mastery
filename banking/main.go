@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,9 +12,9 @@ import (
 // The struct fields are exported (must start with an uppercase letter) to be accessible from other packages.
 // but you can specify JSON alias using the `json` tag for the fields
 type Customer struct {
-	Name    string `json:"firstName"`
-	City    string `json:"city"`
-	Zipcode string `json:"zipcode"`
+	Name    string `json:"firstName" xml:"name"`
+	City    string `json:"city" xml:"city"`
+	Zipcode string `json:"zipcode" xml:"zipcode"`
 }
 
 func main() {
@@ -32,17 +33,23 @@ func greet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// understanding JSON encoding
+// understanding JSON/XML encoding
 func getCustomers(w http.ResponseWriter, r *http.Request) {
 	customers := []Customer{
 		{"John", "New York", "10001"},
 		{"Nelson", "Los Angeles", "90001"},
 	}
+
+	reqHeaderContentType := r.Header.Get("Content-Type")
+
 	//the writer encode header defaults to text/plain text if not specified
-	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(customers)
-	if err != nil {
-		log.Println("error encoding customers: ", err)
-		return
+	if reqHeaderContentType == "application/xml" {
+		// xml encoding
+		w.Header().Set("Content-Type", "application/xml")
+		xml.NewEncoder(w).Encode(customers)
+	} else {
+		//json encoding
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(customers)
 	}
 }
