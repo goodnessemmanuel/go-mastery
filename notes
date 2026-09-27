@@ -4,3 +4,6 @@ In Go, when we say mux, it usually means an HTTP request multiplexer. Its main j
 
 Go module helps you determine your application root, the path to the Go source code and manage dependencies. It helps Go to understand our package structure.
 e.g. go mod init module github.com/goodnessemmanuel/go-mastery indicates go-mastery is the root of the module and the source code is in the github.com/goodnessemmanuel/go-mastery directory.
+
+Adding external dependencies to your project is as simple as importing the package and running go get. For example, if you want to use the Gorilla Mux package, you can import it in your code like this:
+```go get -u github.com/gorilla/mux``` adding external dependencies also introduces a go.sum file in your project directory. go.sum is a file that keeps track of the versions of external dependencies that your project uses. that way, version conflicts can be avoided when multiple developers are working on the same project. It ensures that everyone is using the same version of the dependencies.

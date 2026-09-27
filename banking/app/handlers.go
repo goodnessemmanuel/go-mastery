@@ -25,7 +25,7 @@ func greet(w http.ResponseWriter, r *http.Request) {
 }
 
 // understanding JSON/XML encoding
-func getCustomers(w http.ResponseWriter, r *http.Request) {
+func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 	customers := []Customer{
 		{"John", "New York", "10001"},
 		{"Nelson", "Los Angeles", "90001"},
