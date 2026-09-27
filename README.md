@@ -28,6 +28,7 @@ go-mastery/
 ├── project-2/            # Future Go project
 ├── project-3/            # Future Go project
 ├── experiments/          # Small proofs of concept and experiments
+├── go-handy-notes.md     # A lightweight reference for Go concepts learned during development.
 └── README.md
 ```
 
